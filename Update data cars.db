@@ -1,0 +1,19 @@
+import sqlite3
+
+# Koneksi ke database
+koneksi = sqlite3.connect("cars.db")
+cursor = koneksi.cursor()
+print("🔗 Koneksi ke database berhasil.")
+
+# Ubah data mobil dengan ID 103 (contoh)
+cursor.execute("""
+UPDATE TBCars
+SET name = ?, brand = ?, model = ?, price = ?
+WHERE id = ?
+""", ('Updated Green Car', 'Suzuki', 'Baleno', 15000, 103))
+print("✏️ Data mobil dengan ID 103 berhasil diupdate.")
+
+# Simpan dan tutup koneksi
+koneksi.commit()
+koneksi.close()
+print("🔒 Koneksi ditutup dan perubahan disimpan.")
