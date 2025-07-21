@@ -1,0 +1,15 @@
+import sqlite3
+
+# Koneksi ke database
+koneksi = sqlite3.connect("cars.db")
+cursor = koneksi.cursor()
+print("🔗 Koneksi ke database berhasil.")
+
+# Hapus mobil dengan ID tertentu (contoh: 104)
+cursor.execute("DELETE FROM TBCars WHERE id = ?", (104,))
+print("🗑️ Data mobil dengan ID 104 berhasil dihapus.")
+
+# Simpan dan tutup koneksi
+koneksi.commit()
+koneksi.close()
+print("🔒 Koneksi ditutup dan perubahan disimpan.")
