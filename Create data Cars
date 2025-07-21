@@ -1,0 +1,29 @@
+import sqlite3
+
+# Koneksi ke database
+koneksi = sqlite3.connect("cars.db")
+cursor = koneksi.cursor()
+print("🔗 Koneksi ke database berhasil.")
+
+# Tambahkan data mobil baru (multi-entry)
+data_mobil = [
+    (102, 'Blue Car', 'Toyota', 'Yaris', 13500),
+    (103, 'Green Car', 'Suzuki', 'Swift', 12800),
+    (104, 'Black Car', 'Hyundai', 'Tucson', 18500)
+]
+
+# Masukkan ke tabel
+for mobil in data_mobil:
+    try:
+        cursor.execute("""
+        INSERT INTO TBCars (id, name, brand, model, price)
+        VALUES (?, ?, ?, ?, ?)
+        """, mobil)
+        print(f"✅ Data {mobil[1]} berhasil dimasukkan.")
+    except sqlite3.IntegrityError:
+        print(f"⚠️ ID {mobil[0]} sudah ada, data {mobil[1]} tidak dimasukkan.")
+
+# Simpan dan tutup koneksi
+koneksi.commit()
+koneksi.close()
+print("🔒 Semua data tersimpan dan koneksi ditutup.")
