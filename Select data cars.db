@@ -1,0 +1,25 @@
+import sqlite3
+
+# Koneksi ke database
+koneksi = sqlite3.connect("cars.db")
+cursor = koneksi.cursor()
+print("🔗 Koneksi ke database berhasil.")
+
+# Ambil semua data
+cursor.execute("SELECT * FROM TBCars")
+data_mobil = cursor.fetchall()
+
+# Tampilkan dalam format tabel
+print("\n📋 Daftar Mobil dalam TBCars:")
+print("-" * 60)
+print(f"{'ID':<5} {'Name':<15} {'Brand':<10} {'Model':<10} {'Price':>10}")
+print("-" * 60)
+
+for mobil in data_mobil:
+    print(f"{mobil[0]:<5} {mobil[1]:<15} {mobil[2]:<10} {mobil[3]:<10} {mobil[4]:>10,.2f}")
+
+print("-" * 60)
+
+# Tutup koneksi
+koneksi.close()
+print("🔒 Koneksi ditutup.")
