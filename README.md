@@ -11,4 +11,4 @@ CreateTable.py = buat tabel dengan menjalankannya cukup sekali saja (jika sudah 
 
 Terima kasih.
 
-NIM:241080200141 NAMA:DWIKY DHARMAWAN KELAS:2A1
+NIM:241080200058 NAMA:Muhammad Raihan Nasyid KELAS:2A1
