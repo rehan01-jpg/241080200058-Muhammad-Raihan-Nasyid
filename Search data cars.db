@@ -1,0 +1,29 @@
+import sqlite3
+
+# Koneksi ke database
+koneksi = sqlite3.connect("cars.db")
+cursor = koneksi.cursor()
+print("🔗 Koneksi ke database berhasil.")
+
+# Kata kunci pencarian (contoh: cari merek Honda)
+kata_kunci = 'Honda'
+
+# Query pencarian
+cursor.execute("SELECT * FROM TBCars WHERE brand = ?", (kata_kunci,))
+hasil = cursor.fetchall()
+
+# Tampilkan hasil pencarian
+print(f"\n🔍 Hasil pencarian untuk brand: {kata_kunci}")
+print("-" * 60)
+print(f"{'ID':<5} {'Name':<15} {'Brand':<10} {'Model':<10} {'Price':>10}")
+print("-" * 60)
+
+for mobil in hasil:
+    print(f"{mobil[0]:<5} {mobil[1]:<15} {mobil[2]:<10} {mobil[3]:<10} {mobil[4]:>10,.2f}")
+
+if not hasil:
+    print("❗ Tidak ditemukan data dengan brand tersebut.")
+
+print("-" * 60)
+koneksi.close()
+print("🔒 Koneksi ditutup.")
